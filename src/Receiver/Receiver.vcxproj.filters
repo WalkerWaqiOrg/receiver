@@ -69,5 +69,8 @@
     <ClInclude Include="..\..\include\bdapi.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="AppSetting\utility.h">
+      <Filter>AppSetting</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

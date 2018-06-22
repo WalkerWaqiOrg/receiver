@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">
+    <QtMsBuild>$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;LOG4QT_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;.\helpers;.\spi;.\varia;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName)d.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName)d.pdb</ProgramDatabaseFile>
+      <ProfileGuidedDatabase>$(OutDir)$(TargetName)d.pgd</ProfileGuidedDatabase>
+      <ImportLibrary>$(OutDir)$(TargetName)d.lib</ImportLibrary>
+    </Link>
+    <QtMoc>
+      <Define>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;LOG4QT_LIB;_WINDLL</Define>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;.\helpers;.\spi;.\varia;%(AdditionalIncludeDirectories)</IncludePath>
+      <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+      <QTDIR>$(QTDIR)</QTDIR>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;LOG4QT_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;.\helpers;.\spi;.\varia;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <QtMoc>
+      <Define>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;LOG4QT_LIB;_WINDLL</Define>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;.\helpers;.\spi;.\varia;%(AdditionalIncludeDirectories)</IncludePath>
+      <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+      <QTDIR>$(QTDIR)</QTDIR>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="appenderskeleton.cpp" />
+    <ClCompile Include="basicconfigurator.cpp" />
+    <ClCompile Include="consoleappender.cpp" />
+    <ClCompile Include="dailyrollingfileappender.cpp" />
+    <ClCompile Include="fileappender.cpp" />
+    <ClCompile Include="helpers\classlogger.cpp" />
+    <ClCompile Include="helpers\configuratorhelper.cpp" />
+    <ClCompile Include="helpers\datetime.cpp" />
+    <ClCompile Include="helpers\factory.cpp" />
+    <ClCompile Include="helpers\initialisationhelper.cpp" />
+    <ClCompile Include="helpers\logerror.cpp" />
+    <ClCompile Include="helpers\logobject.cpp" />
+    <ClCompile Include="helpers\logobjectptr.cpp" />
+    <ClCompile Include="helpers\optionconverter.cpp" />
+    <ClCompile Include="helpers\patternformatter.cpp" />
+    <ClCompile Include="helpers\properties.cpp" />
+    <ClCompile Include="hierarchy.cpp" />
+    <ClCompile Include="layout.cpp" />
+    <ClCompile Include="level.cpp" />
+    <ClCompile Include="log4qt.cpp" />
+    <ClCompile Include="logger.cpp" />
+    <ClCompile Include="loggerrepository.cpp" />
+    <ClCompile Include="loggingevent.cpp" />
+    <ClCompile Include="logmanager.cpp" />
+    <ClCompile Include="mdc.cpp" />
+    <ClCompile Include="ndc.cpp" />
+    <ClCompile Include="patternlayout.cpp" />
+    <ClCompile Include="propertyconfigurator.cpp" />
+    <ClCompile Include="rollingfileappender.cpp" />
+    <ClCompile Include="simplelayout.cpp" />
+    <ClCompile Include="spi\filter.cpp" />
+    <ClCompile Include="ttcclayout.cpp" />
+    <ClCompile Include="varia\debugappender.cpp" />
+    <ClCompile Include="varia\denyallfilter.cpp" />
+    <ClCompile Include="varia\levelmatchfilter.cpp" />
+    <ClCompile Include="varia\levelrangefilter.cpp" />
+    <ClCompile Include="varia\listappender.cpp" />
+    <ClCompile Include="varia\nullappender.cpp" />
+    <ClCompile Include="varia\stringmatchfilter.cpp" />
+    <ClCompile Include="writerappender.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="helpers\classlogger.h" />
+    <QtMoc Include="spi\filter.h" />
+    <QtMoc Include="helpers\configuratorhelper.h" />
+    <ClInclude Include="helpers\datetime.h" />
+    <ClInclude Include="helpers\factory.h" />
+    <ClInclude Include="helpers\initialisationhelper.h" />
+    <ClInclude Include="helpers\logerror.h" />
+    <QtMoc Include="helpers\logobject.h" />
+    <ClInclude Include="helpers\logobjectptr.h" />
+    <ClInclude Include="helpers\optionconverter.h" />
+    <ClInclude Include="helpers\patternformatter.h" />
+    <ClInclude Include="helpers\properties.h" />
+    <ClInclude Include="loggerrepository.h" />
+    <ClInclude Include="loggingevent.h" />
+    <ClInclude Include="logmanager.h" />
+    <ClInclude Include="mdc.h" />
+    <ClInclude Include="ndc.h" />
+    <ClInclude Include="propertyconfigurator.h" />
+    <QtMoc Include="varia\stringmatchfilter.h" />
+    <QtMoc Include="varia\nullappender.h" />
+    <QtMoc Include="varia\listappender.h" />
+    <QtMoc Include="varia\levelrangefilter.h" />
+    <QtMoc Include="varia\levelmatchfilter.h" />
+    <QtMoc Include="varia\denyallfilter.h" />
+    <QtMoc Include="varia\debugappender.h" />
+    <QtMoc Include="writerappender.h" />
+    <QtMoc Include="ttcclayout.h" />
+    <QtMoc Include="simplelayout.h" />
+    <QtMoc Include="rollingfileappender.h" />
+    <QtMoc Include="patternlayout.h" />
+    <QtMoc Include="logger.h" />
+    <QtMoc Include="appender.h" />
+    <QtMoc Include="appenderskeleton.h" />
+    <ClInclude Include="basicconfigurator.h" />
+    <QtMoc Include="consoleappender.h" />
+    <QtMoc Include="dailyrollingfileappender.h" />
+    <QtMoc Include="fileappender.h" />
+    <ClInclude Include="hierarchy.h" />
+    <QtMoc Include="layout.h" />
+    <ClInclude Include="level.h" />
+    <ClInclude Include="log4qt.h" />
+    <ClInclude Include="log4qt_global.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source.def" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="msvc2015" MocOptions="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
