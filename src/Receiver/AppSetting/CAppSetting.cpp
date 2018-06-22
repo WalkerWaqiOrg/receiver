@@ -26,8 +26,16 @@ const QString& CAppSetting::GetRequestUrl()
 	return m_requestUrl;
 }
 
+const QString& CAppSetting::GetConfirmUrl()
+{
+	if (m_confirmUrl.isEmpty()) {
+		m_confirmUrl = "https://api2.myrtb.net/client/bind/confirm";
+	}
+	return m_confirmUrl;
+}
+
 CAppSetting::CAppSetting(void):
-	m_certCodePath("")
+	m_certCodePath(""), m_confirmUrl("")
 {
 	m_homePath = qApp->applicationDirPath()+ "/";
 }

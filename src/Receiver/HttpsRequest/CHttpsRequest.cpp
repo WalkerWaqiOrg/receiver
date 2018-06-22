@@ -17,7 +17,7 @@ CHttpsRequest::~CHttpsRequest()
 {
 }
 
-void CHttpsRequest::SendHttpsRequest(const QString& deviceID, const QString receiveUrl)
+void CHttpsRequest::SendHttpsRequest(const QString& url, const QString& deviceID, const QString receiveUrl)
 {
 	const static QString defaultText = "uuid=%1&wallet_addr=%2";
 
@@ -34,7 +34,7 @@ void CHttpsRequest::SendHttpsRequest(const QString& deviceID, const QString rece
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 	request.setHeader(QNetworkRequest::ContentLengthHeader, dataArray.length());
 
-	request.setUrl(QUrl(CAppSetting::instance().GetRequestUrl())); //发送的服务器IP地址
+	request.setUrl(QUrl(url)); //发送的服务器IP地址
 
 	QNetworkReply* pReply = m_pManager->post(request, dataArray);
 

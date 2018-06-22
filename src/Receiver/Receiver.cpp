@@ -1,5 +1,6 @@
 #include "Receiver.h"
 #include "bdapi.h"
+#include "AppSetting/CAppSetting.h"
 
 Receiver::Receiver(QWidget *parent)
 	: QMainWindow(parent),m_pTimer(NULL), 
@@ -57,5 +58,20 @@ void Receiver::on_btnBind_clicked()
 		m_pHttpsRequest = new CHttpsRequest(this);
 	}
 	m_deviceID = "111";
-	m_pHttpsRequest->SendHttpsRequest(m_deviceID, ui.lineEdit->text());
+	m_pHttpsRequest->SendHttpsRequest(CAppSetting::instance().GetRequestUrl(), m_deviceID, ui.lineEdit->text());
+	ui.stackedWidget->setCurrentWidget(ui.page_2);
+}
+
+void Receiver::on_btnOk_clicked()
+{
+	if (NULL == m_pHttpsRequest) {
+		m_pHttpsRequest = new CHttpsRequest(this);
+	}
+	m_deviceID = "111";
+	m_pHttpsRequest->SendHttpsRequest(CAppSetting::instance().GetConfirmUrl(), m_deviceID, ui.lineEdit->text());
+}
+
+void Receiver::on_btnCancel_clicked()
+{
+	//返回到上一个界面 重新输入
 }

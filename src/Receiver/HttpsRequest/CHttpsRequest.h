@@ -11,7 +11,7 @@ public:
 	CHttpsRequest(QObject* parent = NULL);
 	~CHttpsRequest();
 public:
-	void SendHttpsRequest(const QString& deviceID, const QString receiveUrl);
+	void SendHttpsRequest(const QString& url, const QString& deviceID, const QString receiveUrl);
 signals:
 	void SignalRequestFinished();
 private slots:

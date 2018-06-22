@@ -17,6 +17,8 @@ private:
 private slots:
 	void SlotCheckTimeout();
 	void on_btnBind_clicked();
+	void on_btnOk_clicked();
+	void on_btnCancel_clicked();
 private:
 	Ui::ReceiverClass ui;
 	QTimer* m_pTimer;
