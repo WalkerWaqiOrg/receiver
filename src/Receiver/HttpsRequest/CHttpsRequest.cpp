@@ -11,25 +11,31 @@ CHttpsRequest::CHttpsRequest(QObject* parent /*= NULL*/):
 
 CHttpsRequest::~CHttpsRequest()
 {
-
 }
 
 void CHttpsRequest::SendHttpsRequest(const QString& deviceID, const QString receiveUrl)
 {
 	const static QString defaultText = "uuid=%1,wallet_addr=%2";
 
+	QString strText = defaultText.arg(deviceID, receiveUrl);
+	QByteArray dataArray = strText.toUtf8();
+
 	QNetworkRequest request;
 	QSslConfiguration config = request.sslConfiguration();
 	QList<QSslCertificate> certs = QSslCertificate::fromPath(CAppSetting::instance().GetCertCodePath());
 	config.setCaCertificates(certs);
 	request.setSslConfiguration(config);
-	request.setUrl(QUrl("")); //发送的服务器IP地址
 
-	QString strText = defaultText.arg(deviceID, receiveUrl);
-	QNetworkReply* pReply = m_pManager->post(request, strText.toUtf8());
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+	request.setHeader(QNetworkRequest::ContentLengthHeader, dataArray.length());
+
+	request.setUrl(QUrl(CAppSetting::instance().GetRequestUrl())); //发送的服务器IP地址
+
+	QNetworkReply* pReply = m_pManager->post(request, dataArray);
 
 	connect(pReply, SIGNAL(finished()), this, SLOT(SlotFinished()));
 	connect(pReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(SlotError(QNetworkReply::NetworkError)));
+
 }
 
 void CHttpsRequest::SlotFinished()
@@ -50,4 +56,3 @@ void CHttpsRequest::AnalyzeJson(const QString& text)
 {
 	//Fix 解析返回的Json字符串
 }
-
