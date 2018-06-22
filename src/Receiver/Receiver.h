@@ -2,6 +2,8 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_Receiver.h"
+#include <QTimer>
+#include "CHttpsRequest.h"
 
 class Receiver : public QMainWindow
 {
@@ -9,7 +11,15 @@ class Receiver : public QMainWindow
 
 public:
 	Receiver(QWidget *parent = Q_NULLPTR);
-
+	~Receiver();
+private:
+	void CheckDeviceConnect();
+private slots:
+	void SlotCheckTimeout();
+	void on_btnBind_clicked();
 private:
 	Ui::ReceiverClass ui;
+	QTimer* m_pTimer;
+	QString m_deviceID;
+	CHttpsRequest* m_pHttpsRequest;
 };

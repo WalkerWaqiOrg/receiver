@@ -26,6 +26,9 @@
     <Filter Include="AppSetting">
       <UniqueIdentifier>{b4392bfc-a1e5-4256-87b3-d01455dc2d82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{eba69f9f-1b12-4108-a1ea-cb75a984fae6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -62,6 +65,9 @@
   <ItemGroup>
     <ClInclude Include="AppSetting\CAppSetting.h">
       <Filter>AppSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\bdapi.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

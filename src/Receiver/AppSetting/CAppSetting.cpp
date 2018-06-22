@@ -13,7 +13,7 @@ CAppSetting::~CAppSetting(void)
 const QString& CAppSetting::GetCertCodePath()
 {
 	if (m_certCodePath.isEmpty()) {
-		m_certCodePath = m_homePath + "api.myrtb.net.crt";
+		m_certCodePath = ":/Receiver/api.myrtb.net.crt";
 	}
 	return m_certCodePath;
 }

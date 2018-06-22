@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="Receiver">
+    <qresource prefix="/Receiver">
+        <file>api.myrtb.net.crt</file>
     </qresource>
 </RCC>
