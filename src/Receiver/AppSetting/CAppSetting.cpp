@@ -42,7 +42,7 @@ const QString& CAppSetting::GetUILogPath()
 {
 	//Fix Mac下不能再程序目录创建日志文件
 	if (m_logPath.isEmpty()){
-		m_logPath = m_homePath + "log.log";
+		m_logPath = m_appdataPath + "log.log";
 	}
 	return m_logPath;
 }
